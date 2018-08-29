@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/header %>
+    </header>
+    <div class="container">
+      <% var url = "/routes/" + route.id + "?_method=PUT" %>
+      <form method="POST" action=<%= url %> >
+        <input required name="route" value=<%= route.route %> />
+        <a href="/climbing" class="btn red">ROUTES</a>
+        <button class="btn">SAVE</button>
+     </form>
+   </div>
+  </body>
+</html>

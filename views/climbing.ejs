@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ./partials/head %>
+  </head>
+  <body>
+    <header>
+      <% include ./partials/navbar %>
+    </header>
+    <h1 class='center'>Climb On</h1>
+    <hr />
+    <div class='row'>
+      <div class='col s12 m4'>
+        <h3>Add Route</h3>
+        <form action='/climbing' method='post'>
+          <input type='text' name='route' placeholder='Route' />
+          <input type='text' name='grade' placeholder='Grade' />
+          <input type='text' name='rating' placeholder='Rating' />
+          <input type='text' name='description' placeholder='description' />
+          <button class='btn btn-waves' type='submit'>ADD</button>
+        </form>
+      </div>
+      <table class='tbale col m8 s12'>
+        <thead>
+          <th>ROUTE</th>
+          <th>GRADE</th>
+          <th>RATING</th>
+          <th>DESCRIPTION</th>
+          <th>EDIT</th>
+          <th>DELETE</th>
+        </thead>
+        <tbody>
+          <% route.forEach (function(route){ %>
+          <% var url = "/climbing" + route.id + "?_method=DELETE" %>
+          <% var editUrl = "/climbing/" + route.id + "/edit" %>
+            <tr>
+              <td><%= route.route %></td>
+              <td><%= route.grade %></td>
+              <td><%= route.rating %></td>
+              <td><%= route.description %></td>
+              <td>
+                <a class="btn" href=<%= editUrl %>>
+                  EDIT
+                </a>
+              </td>
+              <td>
+                <form method="POST" action=<%= url %>>
+                  <button class="btn red">DELETE</button>
+                </form>
+              </td>
+            <% }); %>
+        </tbody>
+      </table>
+    </body>
+</html>
